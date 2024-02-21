@@ -1,0 +1,88 @@
+/* behavior of everything*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: Gotham Rounded, sans-serif;
+    font-weight: normal;
+}
+
+/* style the background*/
+body {
+    padding: 0; /* remove all padding, so bg fills entire screen*/
+    margin:0; /* remove all margin, so bg fills entire screen*/
+    background: linear-gradient(to right, rgb(254, 91, 91), #00AAFF); /* this way are first color will be color on left, second one is color on right*/
+}
+
+
+.calculator-grid{
+    display: grid;
+    justify-content:center;
+    align-content:center; /* center everything*/
+    min-height: 100vh; /* fill 100% of height, everything centered on screen*/
+    grid-template-columns: repeat(4,100px); /* 4 columns that will repeat, 100px wide*/
+    grid-template-rows: minmax(120px,auto) repeat(5,100px); /* first row, the output can grow if we input large calculations, so we use minmax, minimum value = 100px tall, but max = as large as it wants*/
+}   
+
+/* Position the buttons */
+.calculator-grid > button{
+    color: white;
+    cursor: pointer;
+    font-size:2rem;
+    /* border:1px solid white; */
+    outline:none; /* standard by default its removed */
+    background-color: rgb(109, 109, 109);
+}
+
+.calculator-grid > button:hover{
+    background-color:rgb(79, 79, 79);
+}
+
+/* Individual button behaviors */
+.calculator-grid > button.clear{
+    background-color: red;
+    grid-column: span 2; /* span to 2 columns*/
+}
+
+.calculator-grid > button.clear:hover{
+    background-color: rgb(253, 73, 73);
+}
+
+.calculator-grid > button.operators{
+    background-color: orange;
+}
+
+.calculator-grid > button.operators:hover{
+    background-color: rgb(255, 183, 49);
+}
+
+.calculator-grid > button.equal-operator{
+    background-color: rgb(10, 171, 117);
+    grid-column: span 2; /* span to 2 columns*/
+}
+
+.calculator-grid > button.equal-operator:hover{
+    background-color: rgb(49, 210, 156);
+}
+
+.output {
+    grid-column: 1 / -1; /* span from first column all the way to the last column*/
+    background-color:rgb(41, 41, 41);
+    display: flex;
+    align-items: flex-end; /* align elements in container*/
+    justify-content: space-between; /* put space b/w elements*/
+    flex-direction: column; /* line up vertically instead of horizontal*/ 
+    padding : 10px; /* add padding so it doesnt touch extremee right*/
+    word-wrap: break-word;
+    word-break:break-all;
+}
+
+.output .previous-operand{
+    color: rgb(205, 205, 205);
+    font-size: 1.5rem;
+}
+
+.output .current-operand{
+    color: white;
+    font-size: 2.5rem;
+}
